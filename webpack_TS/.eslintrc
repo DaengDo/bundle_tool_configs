@@ -1,3 +1,13 @@
 {
-  "extends": ["plugin:prettier/recommended"]
+  "extends": ["plugin:prettier/recommended", "react-app"],
+  // "plugins": ["prettier"],
+  "ignorePatterns": ["node_modules/"],
+  // "parser": "@babel/eslint-parser"
+  // "parserOptions": {
+  //   "ecmaVersion": 2020,
+  //   "sourceType": "module"
+  // }
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+  }
 }

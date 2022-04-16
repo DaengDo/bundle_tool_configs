@@ -2,6 +2,7 @@ import path from 'path';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import webpack, { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
+import ESLintPlugin from 'eslint-webpack-plugin';
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
@@ -12,9 +13,9 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const config: Configuration = {
-  name: 'sleact',
+  name: 'bundle_TS',
   mode: isDevelopment ? 'development' : 'production',
-  devtool: isDevelopment ? 'hidden-source-map' : 'inline-source-map',
+  devtool: isDevelopment ? 'eval-cheap-module-source-map' : false,
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
@@ -63,11 +64,9 @@ const config: Configuration = {
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       async: false,
-      // eslint: {
-      //   files: './src/**/*',
-      // },
     }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
+    new ESLintPlugin({ extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'] }),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -76,7 +75,7 @@ const config: Configuration = {
   },
   devServer: {
     historyApiFallback: true,
-    port: 3090,
+    port: 3000,
     devMiddleware: { publicPath: '/dist/' },
     static: { directory: path.resolve(__dirname) },
   },
