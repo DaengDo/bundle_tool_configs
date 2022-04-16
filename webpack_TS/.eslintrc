@@ -1,6 +1,6 @@
 {
   "extends": ["plugin:prettier/recommended", "react-app"],
-  // "plugins": ["prettier"],
+  "plugins": ["prettier"],
   "ignorePatterns": ["node_modules/"],
   // "parser": "@babel/eslint-parser"
   // "parserOptions": {

@@ -52,8 +52,9 @@ module: {
   - 코드 스플리팅이 가능하게 해주는 패키지, react18 부터 `React.lazy`와 `Suspense`가 서버사이드 렌더링 지원이 되서 걷어내던가 해야할듯 (이전엔 안됐음)
 
 - `eslint` : JS 정적 분석(코드를 컴파일 혹은 실행하기 이전에 미리 디버깅) 도구
-  - `eslint-config-airbnb` : airbnb 스타일 eslint 적용
-    - `npx install-peerdeps --dev eslint-config-airbnb`
+  - `eslint-config-react-app` : CRA 팀의 eslint 설정
+  - `eslint-config-prettier` : 불필요하거나 prettier랑 충돌날 가능성 있는 규칙 해제
+  - ~`eslint-config-airbnb` : airbnb 스타일 eslint 적용~
 
 - `cross-env`
   - 사용할 커멘드 앞에 `cross-env [<key>=<value>, ...]` 를 붙여 실행하면 됨
