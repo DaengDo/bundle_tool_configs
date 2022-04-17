@@ -18,6 +18,7 @@
 
 - compilerOptions
   - https://www.typescriptlang.org/tsconfig
+  - https://codingapple.com/unit/typescript-tsconfig-json/
 
 ## Webpack
 
