@@ -60,8 +60,14 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     port: 3000,
-    devMiddleware: { publicPath: '/dist/' },
-    static: { directory: path.resolve(__dirname) },
+    // devMiddleware: { publicPath: '/dist/' },
+    // static: { directory: path.resolve(__dirname) },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3005',
+        changeOrigin: true,
+      },
+    },
   },
 };
 
