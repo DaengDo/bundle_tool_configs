@@ -1,3 +1,16 @@
 {
-  "extends": ["plugin:prettier/recommended"]
+  "extends": ["plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "ignorePatterns": ["node_modules/"],
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module",
+    "jsx": "react"
+  }
 }

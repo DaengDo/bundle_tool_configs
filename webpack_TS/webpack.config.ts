@@ -1,63 +1,62 @@
-import path from 'path';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import webpack, { Configuration as WebpackConfiguration } from 'webpack';
-import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
-import ESLintPlugin from 'eslint-webpack-plugin';
+import path from "path";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import webpack, { Configuration as WebpackConfiguration } from "webpack";
+import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+import ESLintPlugin from "eslint-webpack-plugin";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
 }
 
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const isDevelopment = process.env.NODE_ENV !== "production";
 
 const config: Configuration = {
-  name: 'bundle_TS',
-  mode: isDevelopment ? 'development' : 'production',
-  devtool: isDevelopment ? 'eval-cheap-module-source-map' : false,
+  name: "bundle_TS",
+  mode: isDevelopment ? "development" : "production",
+  devtool: isDevelopment ? "eval-cheap-module-source-map" : false,
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
     alias: {
-      '@hooks': path.resolve(__dirname, 'hooks'),
-      '@components': path.resolve(__dirname, 'components'),
-      '@layouts': path.resolve(__dirname, 'layouts'),
-      '@pages': path.resolve(__dirname, 'pages'),
-      '@utils': path.resolve(__dirname, 'utils'),
-      '@typings': path.resolve(__dirname, 'typings'),
+      "@hooks": path.resolve(__dirname, "hooks"),
+      "@components": path.resolve(__dirname, "components"),
+      "@layouts": path.resolve(__dirname, "layouts"),
+      "@pages": path.resolve(__dirname, "pages"),
+      "@utils": path.resolve(__dirname, "utils"),
+      "@typings": path.resolve(__dirname, "typings"),
     },
   },
   entry: {
-    app: './client',
+    app: "./client",
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         options: {
           presets: [
             [
-              '@babel/preset-env',
+              "@babel/preset-env",
               {
-                targets: { browsers: ['IE 10'] },
+                targets: { browsers: ["IE 10"] },
                 debug: isDevelopment,
               },
             ],
-            '@babel/preset-react',
-            '@babel/preset-typescript',
+            "@babel/preset-react",
+            "@babel/preset-typescript",
           ],
           env: {
             development: {
-              plugins: [require.resolve('react-refresh/babel')],
+              plugins: [require.resolve("react-refresh/babel")],
             },
           },
         },
-        exclude: path.join(__dirname, 'node_modules'),
+        exclude: path.join(__dirname, "node_modules"),
       },
       {
         test: /\.css?$/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
@@ -65,13 +64,13 @@ const config: Configuration = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
-    new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
-    new ESLintPlugin({ extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'] }),
+    new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? "development" : "production" }),
+    new ESLintPlugin({ extensions: ["js", "mjs", "jsx", "ts", "tsx"] }),
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: '/dist/',
+    path: path.join(__dirname, "dist"),
+    filename: "[name].js",
+    publicPath: "/dist/",
   },
   devServer: {
     historyApiFallback: true,
@@ -79,8 +78,8 @@ const config: Configuration = {
     // devMiddleware: { publicPath: '/dist/' },
     // static: { directory: path.resolve(__dirname) },
     proxy: {
-      '/api': {
-        target: 'http://localhost:3005',
+      "/api": {
+        target: "http://localhost:3005",
         changeOrigin: true,
       },
     },

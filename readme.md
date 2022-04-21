@@ -87,3 +87,5 @@ module: {
 - 22/04/17
   - TS webpack에 eslint 적용함
   - airbnb는 너무 기준이 까다로운 것 같아 CRA의 `eslint-config-react-app` 을 적용함
+- 22/04/21
+  - webpack_JS 설정 완료, 백틱이랑 홑따옴표랑 햇갈려서 prettier 설정 doubleQuote로 적용
