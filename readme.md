@@ -89,3 +89,12 @@ module: {
   - airbnb는 너무 기준이 까다로운 것 같아 CRA의 `eslint-config-react-app` 을 적용함
 - 22/04/21
   - webpack_JS 설정 완료, 백틱이랑 홑따옴표랑 햇갈려서 prettier 설정 doubleQuote로 적용
+- 22/04/22
+  - vite_JS
+    - 일단 devServer는 오지게 빠름 ㄷㄷ
+    - devServer 에서 eslint 적용 아직 못함
+    - build 결과물인 `index.html` 의 script src 경로 설정 번잡하게 다시 해줘야함
+    - 구글링해도 vite는 아직 정보가 별로 없는게 큰 문제점...webpack에 비해서 커뮤니티가 작다
+
+## vite 구성 참고 메모
+- https://fullstackcode.dev/2022/02/02/migrating-create-react-app-application-to-vite/
