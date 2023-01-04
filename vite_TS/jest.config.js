@@ -1,15 +1,31 @@
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+/** @type {import('jest').Config} */
 module.exports = {
-  preset: "ts-jest",
-  transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest",
-  },
   testEnvironment: "jest-environment-jsdom",
+  displayName: "my vite app",
   setupFilesAfterEnv: [
     "jest-plugin-context/setup",
     // "@types/jest-plugin-context",
     "./jest.setup.ts",
   ],
+  transform: {
+    "^.+\\.(ts|tsx)$": [
+      "@swc/jest",
+      {
+        jsc: {
+          parser: {
+            syntax: "ecmascript",
+            jsx: true,
+          },
+          transform: {
+            react: {
+              runtime: "automatic",
+            },
+          },
+        },
+      },
+    ],
+  },
+
   coverageThreshold: {
     global: {
       branches: 100,
